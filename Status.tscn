@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://djqynvoyufsqu"]
+
+[ext_resource type="Texture2D" uid="uid://d2oca0o145ese" path="res://icon.svg" id="1_nkcph"]
+[ext_resource type="Script" path="res://status.gd" id="1_tqop5"]
+
+[node name="VBoxContainer" type="VBoxContainer" node_paths=PackedStringArray("texture_rect")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tqop5")
+texture_rect = NodePath("Icon")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_nkcph")
+
+[node name="Countdown" type="Label" parent="."]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

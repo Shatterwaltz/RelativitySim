@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsh2vkc6ppuaf"]
+
+[ext_resource type="Script" path="res://towers.gd" id="1_jbquy"]
+[ext_resource type="Material" uid="uid://b1dyuqhulsrmi" path="res://Assets/yellowalbedo.tres" id="1_ysdae"]
+[ext_resource type="PackedScene" uid="uid://dxhtgo0v1uuem" path="res://Tower.tscn" id="2_0nqt2"]
+[ext_resource type="Material" uid="uid://khajbsr4cc62" path="res://Assets/purplealbedo.tres" id="2_b1sto"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rnwl3"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 4.97
+
+[node name="Towers" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_jbquy")
+
+[node name="ChainShowTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChainHideTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Tower1" parent="." instance=ExtResource("2_0nqt2")]
+time_til_active = 33
+
+[node name="Tower2" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(1.06066, 0, 1.06066, 0, 1.5, 0, -1.06066, 0, 1.06066, 0, 0, 0)
+time_til_active = 12
+
+[node name="Tower3" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, 1.06066, 0, 0, 0)
+time_til_active = 22
+
+[node name="Tower4" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0)
+time_til_active = 22
+
+[node name="Tower5" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 0, 0)
+time_til_active = 12
+
+[node name="Tower6" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(-1.06066, 0, 1.06066, 0, 1.5, 0, -1.06066, 0, -1.06066, 0, 0, 0)
+time_til_active = 12
+
+[node name="Tower7" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(-1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, -1.06066, 0, 0, 0)
+time_til_active = 22
+
+[node name="Tower8" parent="." instance=ExtResource("2_0nqt2")]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)
+time_til_active = 33
+
+[node name="Chains" type="Node3D" parent="."]
+visible = false
+
+[node name="Yellow1" type="MeshInstance3D" parent="Chains"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.39658, 2.58159)
+mesh = SubResource("CylinderMesh_rnwl3")
+surface_material_override/0 = ExtResource("1_ysdae")
+
+[node name="Yellow2" type="MeshInstance3D" parent="Chains"]
+transform = Transform3D(-0.707107, 0.707107, -3.09086e-08, 0, -4.37114e-08, -1, -0.707107, -0.707107, 3.09086e-08, 1.823, 2.3884, -1.78487)
+mesh = SubResource("CylinderMesh_rnwl3")
+surface_material_override/0 = ExtResource("1_ysdae")
+
+[node name="Yellow3" type="MeshInstance3D" parent="Chains"]
+transform = Transform3D(-0.707107, -0.707107, 3.09086e-08, 0, -4.37114e-08, -1, 0.707107, -0.707107, 3.09086e-08, -1.73508, 2.39658, -1.80099)
+mesh = SubResource("CylinderMesh_rnwl3")
+surface_material_override/0 = ExtResource("1_ysdae")
+
+[node name="Purple1" type="MeshInstance3D" parent="Chains"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -2.40061, 2.39658, -0.0425951)
+mesh = SubResource("CylinderMesh_rnwl3")
+surface_material_override/0 = ExtResource("2_b1sto")
+
+[node name="Purple2" type="MeshInstance3D" parent="Chains"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 2.55873, 2.39658, -0.0543)
+mesh = SubResource("CylinderMesh_rnwl3")
+surface_material_override/0 = ExtResource("2_b1sto")
+
+[connection signal="timeout" from="ChainShowTimer" to="." method="_on_chain_show_timer_timeout"]
+[connection signal="timeout" from="ChainHideTimer" to="." method="_on_chain_hide_timer_timeout"]
